@@ -7,8 +7,7 @@ const generateOptions = (allPokemon) => {
     return allPokemon.map((pokemon) => {
         return {
             value: pokemon,
-            // TODO: Change value later
-            label: pokemon,
+            label: `${pokemon} (${pokemonStarters[pokemon]})`,
         };
     });
 };
