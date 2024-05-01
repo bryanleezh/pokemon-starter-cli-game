@@ -189,6 +189,8 @@ async function main() {
                     message: "Final Round. Who will be your favourite?",
                     options: generateOptions([results.round2_1, results.round2_2, results.round2_3,])
                 }),
+            finalResult: ({ results }) =>
+                p.note(`Great! Your final starter is ${results.finalRound}!`, "Your Starter")
         },
         {
             onCancel: () => {
