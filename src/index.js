@@ -1,8 +1,8 @@
 import * as p from '@clack/prompts';
 import {setTimeout } from "node:timers/promises";
 import fetch from "node-fetch";
-import generateOptions from './utils/generateOptions.js';
-import { pokemonKeys } from './utils/options.js';
+import generateOptions from './generateOptions.js';
+import { pokemonKeys } from './options.js';
 
 async function main() {
     console.clear();
