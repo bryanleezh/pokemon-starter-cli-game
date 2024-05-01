@@ -204,36 +204,7 @@ async function main() {
     if (game.finalRound) {
         const s = p.spinner();
 
-        const finalData = {
-            Bulbasaur: 0,
-            Charmander: 0,
-            Squirtle: 0,
-            Pikachu: 0,
-            Chikorita: 0,
-            Cyndaquil: 0,
-            Totodile: 0,
-            Treecko: 0,
-            Torchic: 0,
-            Mudkip: 0,
-            Turtwig: 0,
-            Chimchar: 0,
-            Piplup: 0,
-            Snivy: 0,
-            Tepig: 0,
-            Oshawott: 0,
-            Chespin: 0,
-            Froakie: 0,
-            Fennekin: 0,
-            Rowlet: 0,
-            Popplio: 0,
-            Litten: 0,
-            Grookey: 0,
-            Sobble: 0,
-            Scorbunny: 0,
-            Sprigatito: 0,
-            Quaxly: 0,
-            Fuecoco: 0
-        };
+        const finalData = {};
 
         const choices = {
             1: [
@@ -262,10 +233,20 @@ async function main() {
             }
         }
 
-        console.log(finalData);
-        // TODO: Add to database and get from database all data from users
+        // add to database and get from database all data from users
+        await fetch("https://bryan-pokemon-server.vercel.app/api/addStartersEntry.json", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(finalData),
+        });
         s.start("Submitting your starter choices...");
-        await setTimeout(1000);
+        await setTimeout(2000);
+
+        // fetch the current stats
+        const totalStats = await fetch("https://bryan-pokemon-server.vercel.app/api/getAllStarters.json");
+        await setTimeout(2000);
+
+        p.note(await totalStats.json(), "Worldwide Stats:")
         s.stop();
     }
 
