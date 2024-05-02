@@ -126,6 +126,7 @@ async function main() {
     // if game finish executing
     if (game.finalRound) {
         const s = p.spinner();
+        s.start("Submitting your starter choices...");
 
         const finalData = {};
 
@@ -155,6 +156,9 @@ async function main() {
                 finalData[pokemon] = parseInt(key);
             }
         }
+        
+        s.message("Submitted you choices!");
+        await setTimeout(2000);
 
         // add to database and get from database all data from users
         await fetch("https://bryan-pokemon-server.vercel.app/api/addStartersEntry.json", {
@@ -162,10 +166,9 @@ async function main() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(finalData),
         });
-        s.start("Submitting your starter choices...");
-        await setTimeout(2000);
 
         // fetch the current stats
+        s.message("Fetching stats of all players...");
         const totalStats = await fetch("https://bryan-pokemon-server.vercel.app/api/getAllStarters.json");
         await setTimeout(2000);
 
